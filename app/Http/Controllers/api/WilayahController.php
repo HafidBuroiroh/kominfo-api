@@ -53,6 +53,29 @@ class WilayahController extends Controller
         return response()->json($kabupaten);
     }
 
+
+/**
+ * @OA\Get(
+ *     path="/api/kecamatan",
+ *     summary="Get list of kecamatan",
+ *     tags={"Wilayah"},
+ *     security={
+ *         {"bearerAuth": {}}
+ *     },
+ *     @OA\Response(response="200", description="Successful operation"),
+ *     @OA\Response(
+ *         response=401,
+ *         description="Unauthorized",
+ *     ),
+ *     @OA\Response(response="404", description="Resource not found"),
+ * )
+ */
+    public function kecamatan(){
+        $kecamatan = DB::table('m_kecamatan')->get();
+
+        return response()->json($kecamatan);
+    }
+
 /**
  * @OA\Get(
  *     path="/api/kelurahan",
@@ -78,23 +101,100 @@ class WilayahController extends Controller
 
 /**
  * @OA\Get(
- *     path="/api/kecamatan",
- *     summary="Get list of kecamatan",
+ *     path="/api/kabupaten/{id_provinsi}",
+ *     summary="Get a list of kabupaten by id provinsi",
  *     tags={"Wilayah"},
  *     security={
  *         {"bearerAuth": {}}
  *     },
+ *      @OA\Parameter(
+*         name="id_provinsi",
+*         in="path",
+*         description="Provinsi ID",
+*         required=true,
+*         @OA\Schema(
+*             type="integer",
+*             format="int64"
+*         )
+*     ),
  *     @OA\Response(response="200", description="Successful operation"),
  *     @OA\Response(
  *         response=401,
  *         description="Unauthorized",
  *     ),
- *     @OA\Response(response="404", description="Resource not found"),
+ *     @OA\Response(response="404", description="Data not found"),
  * )
  */
-    public function kecamatan(){
-        $kecamatan = DB::table('m_kecamatan')->get();
 
-        return response()->json($kecamatan);
+    public function filterkabupaten(Request $request, $id_provinsi){
+        $filterkabupaten = DB::table('m_kabupaten')->where('id_provinsi', $id_provinsi)->get();
+
+        return response()->json($filterkabupaten);
+    }
+
+/**
+ * @OA\Get(
+ *     path="/api/kecamatan/{id_kabupaten}",
+ *     summary="Get a list of kecamatan by id kabupaten",
+ *     tags={"Wilayah"},
+ *     security={
+ *         {"bearerAuth": {}}
+ *     },
+ *      @OA\Parameter(
+*         name="id_kabupaten",
+*         in="path",
+*         description="Kabupaten ID",
+*         required=true,
+*         @OA\Schema(
+*             type="integer",
+*             format="int64"
+*         )
+*     ),
+    *     @OA\Response(response="200", description="Successful operation"),
+    *     @OA\Response(
+    *         response=401,
+    *         description="Unauthorized",
+    *     ),
+    *     @OA\Response(response="404", description="Data not found"),
+    * )
+    */
+
+    public function filterkecamatan(Request $request, $id_kabupaten){
+        $filterkecamatan = DB::table('m_kecamatan')->where('id_kabupaten', $id_kabupaten)->get();
+
+        return response()->json($filterkecamatan);
+    }
+
+/**
+ * @OA\Get(
+ *     path="/api/kelurahan/{id_kecamatan}",
+ *     summary="Get a list of kelurahan by id Kelurahan",
+ *     tags={"Wilayah"},
+ *     security={
+ *         {"bearerAuth": {}}
+ *     },
+ *      @OA\Parameter(
+*         name="id_kecamatan",
+*         in="path",
+*         description="Kelurahan ID",
+*         required=true,
+*         @OA\Schema(
+*             type="integer",
+*             format="int64"
+*         )
+*     ),
+ *     @OA\Response(response="200", description="Successful operation"),
+ *     @OA\Response(
+ *         response=401,
+ *         description="Unauthorized",
+ *     ),
+ *     @OA\Response(response="404", description="Data not found"),
+ * )
+ */
+
+    public function filterkelurahan(Request $request, $id_kecamatan){
+        $filterkelurahan = DB::table('m_kelurahan')->where('id_kecamatan', $id_kecamatan)->get();
+
+        return response()->json($filterkelurahan);
     }
 }

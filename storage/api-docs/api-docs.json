@@ -240,6 +240,31 @@
                 ]
             }
         },
+        "/api/kecamatan": {
+            "get": {
+                "tags": [
+                    "Wilayah"
+                ],
+                "summary": "Get list of kecamatan",
+                "operationId": "98b5ef4b0a75a421f7846a568e989ab5",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/kelurahan": {
             "get": {
                 "tags": [
@@ -265,13 +290,25 @@
                 ]
             }
         },
-        "/api/kecamatan": {
+        "/api/kabupaten/{id_provinsi}": {
             "get": {
                 "tags": [
                     "Wilayah"
                 ],
-                "summary": "Get list of kecamatan",
-                "operationId": "98b5ef4b0a75a421f7846a568e989ab5",
+                "summary": "Get a list of kabupaten by id provinsi",
+                "operationId": "360cadd3df56999031a40bb6a829bcb6",
+                "parameters": [
+                    {
+                        "name": "id_provinsi",
+                        "in": "path",
+                        "description": "Provinsi ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -280,7 +317,81 @@
                         "description": "Unauthorized"
                     },
                     "404": {
-                        "description": "Resource not found"
+                        "description": "Data not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kecamatan/{id_kabupaten}": {
+            "get": {
+                "tags": [
+                    "Wilayah"
+                ],
+                "summary": "Get a list of kecamatan by id kabupaten",
+                "operationId": "40fd2930fb71446ce94b6f58bbbd5330",
+                "parameters": [
+                    {
+                        "name": "id_kabupaten",
+                        "in": "path",
+                        "description": "Kabupaten ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kelurahan/{id_kecamatan}": {
+            "get": {
+                "tags": [
+                    "Wilayah"
+                ],
+                "summary": "Get a list of kelurahan by id Kelurahan",
+                "operationId": "77978754efec197ab16f77fce9b2d6d1",
+                "parameters": [
+                    {
+                        "name": "id_kecamatan",
+                        "in": "path",
+                        "description": "Kelurahan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
                     }
                 },
                 "security": [

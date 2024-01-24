@@ -26,8 +26,11 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware'=>'auth:api'], function(){
     Route::get('/provinsi', [WilayahController::class, 'provinsi']);
     Route::get('/kabupaten', [WilayahController::class, 'kabupaten']);
-    Route::get('/kelurahan', [WilayahController::class, 'kelurahan']);
+    Route::get('/kabupaten/{id_provinsi}', [WilayahController::class, 'filterkabupaten']);
     Route::get('/kecamatan', [WilayahController::class, 'kecamatan']);
+    Route::get('/kecamatan/{id_kabupaten}', [WilayahController::class, 'filterkecamatan']);
+    Route::get('/kelurahan', [WilayahController::class, 'kelurahan']);
+    Route::get('/kelurahan/{id_kecamatan}', [WilayahController::class, 'filterkelurahan']);
     
     
     Route::get('/users', [UserApiController::class, 'user']);
