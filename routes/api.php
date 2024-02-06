@@ -35,5 +35,25 @@ Route::group(['middleware'=>'auth:api'], function(){
     
     Route::get('/users', [UserApiController::class, 'user']);
     Route::get('/users/{id}', [UserApiController::class, 'userdetail']);
+
+    Route::get('/countumkm', [MainController::class, 'countuser']);
+    Route::get('/skalausaha', [MainController::class, 'skalausaha']);
+    Route::get('/levelumkm', [MainController::class, 'levelumkm']);
+    Route::get('/adopsiteknologi', [MainController::class, 'adopsiteknologi']);
+    
+    
+    Route::get('/sosialmedia1', [TeknologiController::class, 'sosialmedia']);
+    Route::get('/sosialmedia2', [TeknologiController::class, 'sosialmedia2']);
+    Route::get('/marketplace1', [TeknologiController::class, 'marketplace']);
+    Route::get('/marketplace2', [TeknologiController::class, 'marketplace2']);
+    Route::get('/marketplace3', [TeknologiController::class, 'marketplace3']);
+    Route::get('/marketplace4', [TeknologiController::class, 'marketplace4']);
+    Route::get('/sosialmediaperdaerah', [TeknologiController::class, 'sosialmediaperdaerah']);
+    Route::get('/daerah', [TeknologiController::class, 'daerah']);
+    Route::get('/marketplaceperdaerah', [TeknologiController::class, 'marketplaceperdaerah']);
+    Route::get('/foodperdaerah', [TeknologiController::class, 'foodperdaerah']);
+    
+    Route::get('/countdaerah', [UmkmController::class, 'countdaerah']);
+    Route::get('/countperdaerah', [UmkmController::class, 'countperdaerah']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
