@@ -25,7 +25,7 @@ class WilayahController extends Controller
  * )
  */
     public function provinsi(){
-        $provinsi = DB::table('m_provinsi')->get();
+        $provinsi = DB::table('m_provinsi')->where('aktif', 1)->get();
 
         return response()->json($provinsi);
     }
@@ -48,7 +48,7 @@ class WilayahController extends Controller
  */
 
     public function kabupaten(){
-        $kabupaten = DB::table('m_kabupaten')->get();
+        $kabupaten = DB::table('m_kabupaten')->where('aktif', 1)->get();
 
         return response()->json($kabupaten);
     }
@@ -71,7 +71,7 @@ class WilayahController extends Controller
  * )
  */
     public function kecamatan(){
-        $kecamatan = DB::table('m_kecamatan')->get();
+        $kecamatan = DB::table('m_kecamatan')->where('aktif', 1)->get();
 
         return response()->json($kecamatan);
     }
@@ -94,7 +94,7 @@ class WilayahController extends Controller
  */
 
     public function kelurahan(){
-        $kelurahan = DB::table('m_kelurahan')->get();
+        $kelurahan = DB::table('m_kelurahan')->where('aktif', 1)->get();
 
         return response()->json($kelurahan);
     }
