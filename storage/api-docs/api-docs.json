@@ -190,6 +190,153 @@
                 ]
             }
         },
+        "/api/users/{id_kabupaten}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of users by id kabupaten",
+                "operationId": "423f08c8a531c609cb577524b3345047",
+                "parameters": [
+                    {
+                        "name": "id_kabupaten",
+                        "in": "path",
+                        "description": "Kabupaten ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id_kecamatan}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of users by id kecamatan",
+                "operationId": "416e5e7693890085b2d04aa4fc84037e",
+                "parameters": [
+                    {
+                        "name": "id_kecamatan",
+                        "in": "path",
+                        "description": "Kecamatan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id_kelurahan}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of users by id kelurahan",
+                "operationId": "e5a6801fe3ff8ff27bdf1272a8fca4e7",
+                "parameters": [
+                    {
+                        "name": "id_kelurahan",
+                        "in": "path",
+                        "description": "Kelurahan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{search}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a list of users by Nama Pemilik/Email/Nama Usaha/No. Hp",
+                "operationId": "03ff56a2edce11a6fd8d85c2ae455c7c",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "path",
+                        "description": "User Search",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/provinsi": {
             "get": {
                 "tags": [
