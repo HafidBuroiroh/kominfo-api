@@ -190,17 +190,17 @@
                 ]
             }
         },
-        "/api/users/{id_kabupaten}": {
+        "/api/userkabupaten": {
             "get": {
                 "tags": [
                     "Users"
                 ],
-                "summary": "Get a list of users by id kabupaten",
-                "operationId": "423f08c8a531c609cb577524b3345047",
+                "summary": "Get a list of users filtered by kabupaten ID",
+                "operationId": "6295980bce3b19e0ce7315450d8f056e",
                 "parameters": [
                     {
                         "name": "id_kabupaten",
-                        "in": "path",
+                        "in": "query",
                         "description": "Kabupaten ID",
                         "required": true,
                         "schema": {
@@ -227,17 +227,17 @@
                 ]
             }
         },
-        "/api/users/{id_kecamatan}": {
+        "/api/userkecamatan": {
             "get": {
                 "tags": [
                     "Users"
                 ],
-                "summary": "Get a list of users by id kecamatan",
-                "operationId": "416e5e7693890085b2d04aa4fc84037e",
+                "summary": "Get a list of users filtered by Kecamatan ID",
+                "operationId": "455cf68341d8e3dafbaba95e520ca44a",
                 "parameters": [
                     {
                         "name": "id_kecamatan",
-                        "in": "path",
+                        "in": "query",
                         "description": "Kecamatan ID",
                         "required": true,
                         "schema": {
@@ -264,17 +264,17 @@
                 ]
             }
         },
-        "/api/users/{id_kelurahan}": {
+        "/api/userkelurahan": {
             "get": {
                 "tags": [
                     "Users"
                 ],
-                "summary": "Get a list of users by id kelurahan",
-                "operationId": "e5a6801fe3ff8ff27bdf1272a8fca4e7",
+                "summary": "Get a list of users filtered by Kelurahan ID",
+                "operationId": "518ffe0f4e93f3c692ca4cbc06426118",
                 "parameters": [
                     {
                         "name": "id_kelurahan",
-                        "in": "path",
+                        "in": "query",
                         "description": "Kelurahan ID",
                         "required": true,
                         "schema": {
@@ -301,18 +301,18 @@
                 ]
             }
         },
-        "/api/users/{search}": {
+        "/api/usersearch": {
             "get": {
                 "tags": [
                     "Users"
                 ],
-                "summary": "Get a list of users by Nama Pemilik/Email/Nama Usaha/No. Hp",
-                "operationId": "03ff56a2edce11a6fd8d85c2ae455c7c",
+                "summary": "Get a list of users filtered by search Nama Pemilik/Email/Nama Usaha/No. Hp",
+                "operationId": "805000cd27ba19cca6d302ff9416d934",
                 "parameters": [
                     {
                         "name": "search",
-                        "in": "path",
-                        "description": "User Search",
+                        "in": "query",
+                        "description": "Search Data",
                         "required": true,
                         "schema": {
                             "type": "string"

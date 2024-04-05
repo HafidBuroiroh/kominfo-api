@@ -206,22 +206,22 @@ class UserApiController extends Controller
 
 /**
  * @OA\Get(
- *     path="/api/users/{id_kabupaten}",
- *     summary="Get a list of users by id kabupaten",
+ *     path="/api/userkabupaten",
+ *     summary="Get a list of users filtered by kabupaten ID",
  *     tags={"Users"},
  *     security={
  *         {"bearerAuth": {}}
  *     },
  *      @OA\Parameter(
-*         name="id_kabupaten",
-*         in="path",
-*         description="Kabupaten ID",
-*         required=true,
-*         @OA\Schema(
-*             type="integer",
-*             format="int64"
-*         )
-*     ),
+ *         name="id_kabupaten",
+ *         in="query",
+ *         description="Kabupaten ID",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer",
+ *             format="int64"
+ *         )
+ *     ),
  *     @OA\Response(response="200", description="Successful operation"),
  *     @OA\Response(
  *         response=401,
@@ -231,38 +231,39 @@ class UserApiController extends Controller
  * )
  */
 
-    public function userkabupaten($id_kabupaten){
-        $userkabupaten = DB::table('form_submissions')
-            ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
-            ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
-            ->leftJoin('m_kabupaten', 'profil_user.id_kabupaten', '=', 'm_kabupaten.id_kabupaten')
-            ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kabupaten.nama_kabupaten')
-            ->whereNotNull('profil_user.jenis_kelamin')
-            ->where('profil_user.id_kabupaten', $id_kabupaten)
-            ->get();
+ public function userkabupaten(Request $request){
+    $id_kabupaten = $request->input('id_kabupaten');
 
-        return response()->json($userkabupaten);
-    }
+    $userkabupaten = DB::table('form_submissions')
+        ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
+        ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
+        ->leftJoin('m_kabupaten', 'profil_user.id_kabupaten', '=', 'm_kabupaten.id_kabupaten')
+        ->select('users.email', 'users.no_wa', 'profil_user.*', 'm_kabupaten.nama_kabupaten')
+        ->whereNotNull('profil_user.jenis_kelamin')
+        ->where('profil_user.id_kabupaten', $id_kabupaten)
+        ->get();
 
+    return response()->json($userkabupaten);
+}
 
 /**
  * @OA\Get(
- *     path="/api/users/{id_kecamatan}",
- *     summary="Get a list of users by id kecamatan",
+ *     path="/api/userkecamatan",
+ *     summary="Get a list of users filtered by Kecamatan ID",
  *     tags={"Users"},
  *     security={
  *         {"bearerAuth": {}}
  *     },
  *      @OA\Parameter(
-*         name="id_kecamatan",
-*         in="path",
-*         description="Kecamatan ID",
-*         required=true,
-*         @OA\Schema(
-*             type="integer",
-*             format="int64"
-*         )
-*     ),
+ *         name="id_kecamatan",
+ *         in="query",
+ *         description="Kecamatan ID",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer",
+ *             format="int64"
+ *         )
+ *     ),
  *     @OA\Response(response="200", description="Successful operation"),
  *     @OA\Response(
  *         response=401,
@@ -272,12 +273,14 @@ class UserApiController extends Controller
  * )
  */
 
-    public function userkecamatan($id_kecamatan){
+    public function userkecamatan(Request $request){
+        $id_kecamatan = $request->input('id_kecamatan');
+
         $userkecamatan = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
             ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
             ->leftJoin('m_kecamatan', 'profil_user.id_kecamatan', '=', 'm_kecamatan.id_kecamatan')
-            ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kecamatan.nama_kecamatan')
+            ->select('users.email', 'users.no_wa', 'profil_user.*', 'm_kecamatan.nama_kecamatan')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where('profil_user.id_kecamatan', $id_kecamatan)
             ->get();
@@ -286,75 +289,78 @@ class UserApiController extends Controller
     }
 
 /**
-* @OA\Get(
-*     path="/api/users/{id_kelurahan}",
-*     summary="Get a list of users by id kelurahan",
-*     tags={"Users"},
-*     security={
-*         {"bearerAuth": {}}
-*     },
-*      @OA\Parameter(
-*         name="id_kelurahan",
-*         in="path",
-*         description="Kelurahan ID",
-*         required=true,
-*         @OA\Schema(
-*             type="integer",
-*             format="int64"
-*         )
-*     ),
-*     @OA\Response(response="200", description="Successful operation"),
-*     @OA\Response(
-*         response=401,
-*         description="Unauthorized",
-*     ),
-*     @OA\Response(response="404", description="User not found"),
-* )
-*/
-    public function userkelurahan($id_kelurahan){
+ * @OA\Get(
+ *     path="/api/userkelurahan",
+ *     summary="Get a list of users filtered by Kelurahan ID",
+ *     tags={"Users"},
+ *     security={
+ *         {"bearerAuth": {}}
+ *     },
+ *      @OA\Parameter(
+ *         name="id_kelurahan",
+ *         in="query",
+ *         description="Kelurahan ID",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer",
+ *             format="int64"
+ *         )
+ *     ),
+ *     @OA\Response(response="200", description="Successful operation"),
+ *     @OA\Response(
+ *         response=401,
+ *         description="Unauthorized",
+ *     ),
+ *     @OA\Response(response="404", description="User not found"),
+ * )
+ */
+    public function userkelurahan(Request $request){
+        $id_kelurahan = $request->input('id_kelurahan');
+
         $userkelurahan = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
             ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
-            ->leftJoin('m_kelurahan', 'profil_user.id_kelurahan', '=', 'm_kelurahan.id_kelurahan')
-            ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kelurahan.nama_kelurahan')
+            ->leftJoin('m_kelurahan', 'profil_user.id_keluarahan', '=', 'm_kelurahan.id_kelurahan')
+            ->select('users.email', 'users.no_wa', 'profil_user.*', 'm_kelurahan.nama_kelurahan')
             ->whereNotNull('profil_user.jenis_kelamin')
-            ->where('profil_user.id_kelurahan', $id_kelurahan)
+            ->where('profil_user.id_keluarahan', $id_kelurahan)
             ->get();
 
         return response()->json($userkelurahan);
     }
 
 /**
-* @OA\Get(
-*     path="/api/users/{search}",
-*     summary="Get a list of users by Nama Pemilik/Email/Nama Usaha/No. Hp",
-*     tags={"Users"},
-*     security={
-*         {"bearerAuth": {}}
-*     },
-*      @OA\Parameter(
-*         name="search",
-*         in="path",
-*         description="User Search",
-*         required=true,
-*         @OA\Schema(
-*             type="string",
-*         )
-*     ),
-*     @OA\Response(response="200", description="Successful operation"),
-*     @OA\Response(
-*         response=401,
-*         description="Unauthorized",
-*     ),
-*     @OA\Response(response="404", description="User not found"),
-* )
-*/
+ * @OA\Get(
+ *     path="/api/usersearch",
+ *     summary="Get a list of users filtered by search Nama Pemilik/Email/Nama Usaha/No. Hp",
+ *     tags={"Users"},
+ *     security={
+ *         {"bearerAuth": {}}
+ *     },
+ *      @OA\Parameter(
+ *         name="search",
+ *         in="query",
+ *         description="Search Data",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string",
+ *         )
+ *     ),
+ *     @OA\Response(response="200", description="Successful operation"),
+ *     @OA\Response(
+ *         response=401,
+ *         description="Unauthorized",
+ *     ),
+ *     @OA\Response(response="404", description="User not found"),
+ * )
+ */
 
-    public function usersearch($search){
+    public function usersearch(Request $request){
+        $search = $request->input('search');
         $usersearch = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
             ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
-            ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*')
+            ->select('users.email', 'users.no_wa', 'profil_user.*')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where(function ($query) use ($search) {
                 $query->where('profil_user.nama_pemilik', 'like', '%' . $search . '%')

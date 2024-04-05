@@ -35,10 +35,10 @@ Route::group(['middleware'=>'auth:api'], function(){
     
     Route::get('/users', [UserApiController::class, 'user']);
     Route::get('/users/{id}', [UserApiController::class, 'userdetail']);
-    Route::get('/users/{id_kabupaten}', [UserApiController::class, 'userkabupaten']);
-    Route::get('/users/{id_kecamatan}', [UserApiController::class, 'userkecamatan']);
-    Route::get('/users/{id_kelurahan}', [UserApiController::class, 'userkelurahan']);
-    Route::get('/users/{search}', [UserApiController::class, 'usersearch']);
+    Route::get('/userkabupaten', [UserApiController::class, 'userkabupaten']);
+    Route::get('/userkecamatan', [UserApiController::class, 'userkecamatan']);
+    Route::get('/userkelurahan', [UserApiController::class, 'userkelurahan']);
+    Route::get('/usersearch', [UserApiController::class, 'usersearch']);
 
     Route::get('/countumkm', [MainController::class, 'countuser']);
     Route::get('/skalausaha', [MainController::class, 'skalausaha']);
