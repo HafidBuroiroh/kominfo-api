@@ -141,7 +141,7 @@ class UserApiController extends Controller
             ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where('form_submissions.id_user', $id)
-            ->first();
+            ->get();
 
         if (count($userdetail) > 0) {
             $form_id = $userdetail[0]->form_id; // Use id_submit instead of form_id
@@ -538,7 +538,7 @@ class UserApiController extends Controller
             ->orwhere('users.email', $search)
             ->orwhere('profil_user.nama_usaha', $search)
             ->orwhere('profil_user.no_hp', $search)
-            ->first();
+            ->get();
 
         if (count($usersearch) > 0) {
             $form_id = $usersearch[0]->form_id; // Use id_submit instead of form_id
