@@ -234,9 +234,8 @@ class UserApiController extends Controller
     public function userkabupaten($id_kabupaten){
         $userkabupaten = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
-            ->leftJoin('profil_user', 'users.id', '=', 'profil_user.id_user')
+            ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
             ->leftJoin('m_kabupaten', 'profil_user.id_kabupaten', '=', 'm_kabupaten.id_kabupaten')
-            ->leftJoin('forms', 'form_submissions.form_id', '=', 'forms.id')
             ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kabupaten.nama_kabupaten')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where('profil_user.id_kabupaten', $id_kabupaten)
@@ -276,9 +275,8 @@ class UserApiController extends Controller
     public function userkecamatan($id_kecamatan){
         $userkecamatan = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
-            ->leftJoin('profil_user', 'users.id', '=', 'profil_user.id_user')
+            ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
             ->leftJoin('m_kecamatan', 'profil_user.id_kecamatan', '=', 'm_kecamatan.id_kecamatan')
-            ->leftJoin('forms', 'form_submissions.form_id', '=', 'forms.id')
             ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kecamatan.nama_kecamatan')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where('profil_user.id_kecamatan', $id_kecamatan)
@@ -316,9 +314,8 @@ class UserApiController extends Controller
     public function userkelurahan($id_kelurahan){
         $userkelurahan = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
-            ->leftJoin('profil_user', 'users.id', '=', 'profil_user.id_user')
+            ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
             ->leftJoin('m_kelurahan', 'profil_user.id_kelurahan', '=', 'm_kelurahan.id_kelurahan')
-            ->leftJoin('forms', 'form_submissions.form_id', '=', 'forms.id')
             ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*', 'm_kelurahan.nama_kelurahan')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where('profil_user.id_kelurahan', $id_kelurahan)
@@ -356,8 +353,7 @@ class UserApiController extends Controller
     public function usersearch($search){
         $usersearch = DB::table('form_submissions')
             ->leftJoin('users', 'form_submissions.id_user', '=', 'users.id')
-            ->leftJoin('profil_user', 'users.id', '=', 'profil_user.id_user')
-            ->leftJoin('forms', 'form_submissions.form_id', '=', 'forms.id')
+            ->leftJoin('profil_user', 'form_submissions.id_user', '=', 'profil_user.id_user')
             ->select('users.email', 'users.no_wa', 'profil_user.*', 'form_submissions.*')
             ->whereNotNull('profil_user.jenis_kelamin')
             ->where(function ($query) use ($search) {
